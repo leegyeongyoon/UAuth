@@ -43,14 +43,14 @@ public class UserController {
 //
 //    }
 
-    @PostMapping("/signin")
+    @PostMapping("/signin") // Uauth 멤버 로그인
     private UauthResult signin(@RequestBody UserRequestParam reqParams, HttpServletRequest request) {
         UserEntity user = userService.signin(reqParams);
-        ArrayList<String> roles = new ArrayList<>();
-        roles.add("USER");
+        ArrayList<String> roles = new ArrayList<>(); //안봐도 된다
+        roles.add("USER");//안봐도 된다
         if (user != null) {
-            String token = jwtTokenProvider.createToken(user.getHanaPrtlEmpNo(), roles);
-            user.setToken(token);
+            String token = jwtTokenProvider.createToken(user.getHanaPrtlEmpNo(), roles);//안봐도 된다
+            user.setToken(token);//안봐도 된다
             return responseService.getSuccessResult(user,token);
         } else {
             return responseService.getFailResult(1001,"Your account does not exist or your email.");
@@ -62,6 +62,5 @@ public class UserController {
     @PostMapping("/memberList")
     private UserEntity memberList(@RequestBody UserRequestParam reqParams, HttpServletRequest request) {
         return userService.userInfo(reqParams);
-
     }
 }

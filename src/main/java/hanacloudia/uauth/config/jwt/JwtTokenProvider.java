@@ -50,24 +50,20 @@ public class JwtTokenProvider {
     //JWT 토큰에서 인증 정보 조회
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
-        System.out.println("'getAuthentication");
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
     //토큰에서 회원 정보 추출
     public String getUserPk(String token) {
-        System.out.println("'getUserPk");
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
     // request Header에서 token 값 확인
     public String resolveToken(HttpServletRequest request) {
-        System.out.println("'resloveToken");
         return request.getHeader("X-AUTH-TOKEN");
     }
 
     public boolean validateToken(String jwtToken) {
-        System.out.println("'validateToken");
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
             return !claims.getBody().getExpiration().before(new Date());

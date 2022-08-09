@@ -32,7 +32,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserEntity userInfo(UserRequestParam userRequestParam) {
-        System.out.println("service");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(userRequestParam.getUid() != authentication.getName()){
             return null;
@@ -45,10 +44,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity userEntity = userRepository.findByHanaPrtlEmpNo(username);
-        System.out.println("userName : " + username );
         List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("USER"));
-        System.out.println("loadService");
         return new User(userEntity.getHanaPrtlEmpNo(),userEntity.getPassword(),authorities);
     }
 }
