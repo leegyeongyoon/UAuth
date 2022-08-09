@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommonResult {
+public class UauthResult {
     @ApiModelProperty(value = "응답 성공여부 : true/false")
     private boolean success;
 

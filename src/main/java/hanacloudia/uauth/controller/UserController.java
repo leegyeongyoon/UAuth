@@ -3,7 +3,7 @@ package hanacloudia.uauth.controller;
 import hanacloudia.uauth.config.jwt.JwtTokenProvider;
 import hanacloudia.uauth.entity.UserEntity;
 import hanacloudia.uauth.model.UserRequestParam;
-import hanacloudia.uauth.model.response.CommonResult;
+import hanacloudia.uauth.model.response.UauthResult;
 import hanacloudia.uauth.service.ResponseService;
 import hanacloudia.uauth.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -44,7 +44,7 @@ public class UserController {
 //    }
 
     @PostMapping("/signin")
-    private CommonResult signin(@RequestBody UserRequestParam reqParams, HttpServletRequest request) {
+    private UauthResult signin(@RequestBody UserRequestParam reqParams, HttpServletRequest request) {
         UserEntity user = userService.signin(reqParams);
         ArrayList<String> roles = new ArrayList<>();
         roles.add("USER");
@@ -53,7 +53,7 @@ public class UserController {
             user.setToken(token);
             return responseService.getSuccessResult(user,token);
         } else {
-            return responseService.getFailResult(-1,"실패");
+            return responseService.getFailResult(1001,"Your account does not exist or your email.");
         }
 
     }
