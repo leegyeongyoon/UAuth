@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ResponseService {
 
-    public enum UauthResponse {
+    public enum Response {
         SUCCESS(200, "성공하였습니다."),
         FAIL(1000, "실패하였습니다.");
 
         int code;
         String msg;
 
-        UauthResponse(int code, String msg) {
+        Response(int code, String msg) {
             this.code = code;
             this.msg = msg;
         }
@@ -31,7 +31,7 @@ public class ResponseService {
 
     public UauthResult getSuccessResult(UserEntity data, String token) {
         UauthResult result = new UauthResult();
-        setSuccessResult(result, data, token);
+        setSuccessResult(result, data);
         return result;
     }
 
@@ -43,11 +43,10 @@ public class ResponseService {
         return result;
     }
 
-    private void setSuccessResult(UauthResult result, UserEntity data, String token) {
+    private void setSuccessResult(UauthResult result, UserEntity data) {
         result.setSuccess(true);
-        result.setCode(UauthResponse.SUCCESS.getCode());
-        result.setMessage(UauthResponse.SUCCESS.getMsg());
+        result.setCode(Response.SUCCESS.getCode());
+        result.setMessage(Response.SUCCESS.getMsg());
         result.setData(data);
-        result.setToken(token);
     }
 }

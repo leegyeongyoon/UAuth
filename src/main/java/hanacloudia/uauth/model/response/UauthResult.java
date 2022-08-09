@@ -11,7 +11,7 @@ public class UauthResult {
     @ApiModelProperty(value = "응답 성공여부 : true/false")
     private boolean success;
 
-    @ApiModelProperty(value = "응답 코드 : >= 0 정상 , < 0 비정상")
+    @ApiModelProperty(value = "응답 코드 ")
     private int code;
 
     @ApiModelProperty(value = "응답 메시지 ")
@@ -20,6 +20,6 @@ public class UauthResult {
     @ApiModelProperty(value = "Data ")
     private UserEntity data;
 
-    @ApiModelProperty(value = "token ")
-    private String token;
+//    @ApiModelProperty(value = "token ")
+//    private String token;
 }
