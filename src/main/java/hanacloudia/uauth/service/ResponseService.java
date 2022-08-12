@@ -1,13 +1,17 @@
 package hanacloudia.uauth.service;
 
+import hanacloudia.uauth.entity.HanaUserEntity;
 import hanacloudia.uauth.entity.UserEntity;
+import hanacloudia.uauth.model.response.HanaApiResult;
 import hanacloudia.uauth.model.response.UauthResult;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResponseService {
-
     public enum Response {
+
         SUCCESS(200, "성공하였습니다."),
         FAIL(1000, "실패하였습니다.");
 
@@ -48,5 +52,14 @@ public class ResponseService {
         result.setCode(Response.SUCCESS.getCode());
         result.setMessage(Response.SUCCESS.getMsg());
         result.setData(data);
+    }
+
+    public HanaApiResult defaultResult(List<HanaUserEntity> list){
+        HanaApiResult result = new HanaApiResult();
+        result.setSuccess(true);
+        result.setCode(0);
+        result.setMessage("성공하였습니다");
+        result.setList(list);
+        return result;
     }
 }
