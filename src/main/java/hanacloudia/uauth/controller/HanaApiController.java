@@ -7,6 +7,7 @@ import hanacloudia.uauth.service.ResponseService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,8 @@ public class HanaApiController {
 
         private final HanaApiService hanaApiService;
         private final ResponseService responseService;
+        @Value(value = "${auth.token}")
+        private String authToken;
 
         @GetMapping("/signin")
         private HanaApiResult signin(@RequestParam("uid") String uid,
@@ -37,21 +40,37 @@ public class HanaApiController {
         }
 
         @GetMapping("/getempl")
-        private HanaApiResult getEmpl(@RequestParam("name") String name) {
-                List<HanaUserEntity> user = hanaApiService.getEmpl(name);
-                return responseService.defaultResult(user);
+        private HanaApiResult getEmpl(@RequestParam("X-AUTH_TOKEN") String token,
+                                      @RequestParam("name") String name) {
+                List<HanaUserEntity> user = hanaApiService.getEmplbyEmpno(name);
+                if (authToken.equals(token)){
+                        return responseService.defaultResult(user);
+                }else {
+                        return responseService.falseResult();
+                }
+
         }
 
         @GetMapping("/getemplbyempno")
-        private HanaApiResult getemplbyempno(@RequestParam("empno") String empno) {
+        private HanaApiResult getemplbyempno(@RequestParam("X-AUTH_TOKEN") String token,
+                                             @RequestParam("empno") String empno) {
                 List<HanaUserEntity> user = hanaApiService.getEmplbyEmpno(empno);
-                return responseService.defaultResult(user);
+                if (authToken.equals(token)){
+                        return responseService.defaultResult(user);
+                }else {
+                        return responseService.falseResult();
+                }
+
         }
 
         @GetMapping("/getemplbyid")
-        private HanaApiResult getEmplById(@RequestParam("email") String email) {
+        private HanaApiResult getEmplById(@RequestParam("X-AUTH_TOKEN") String token,
+                                          @RequestParam("email") String email) {
                 List<HanaUserEntity> user = hanaApiService.getEmplById(email);
-                return responseService.defaultResult(user);
+                if (authToken.equals(token)){
+                        return responseService.defaultResult(user);
+                }else {
+                        return responseService.falseResult();
+                }
         }
-
 }
