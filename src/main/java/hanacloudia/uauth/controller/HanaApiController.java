@@ -42,7 +42,7 @@ public class HanaApiController {
         @GetMapping("/getempl")
         private HanaApiResult getEmpl(@RequestParam("X-AUTH_TOKEN") String token,
                                       @RequestParam("name") String name) {
-                List<HanaUserEntity> user = hanaApiService.getEmplbyEmpno(name);
+                List<HanaUserEntity> user = hanaApiService.getEmpl(name);
                 if (authToken.equals(token)){
                         return responseService.defaultResult(user);
                 }else {
