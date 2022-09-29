@@ -6,6 +6,7 @@ import hanacloudia.uauth.model.response.HanaApiResult;
 import hanacloudia.uauth.model.response.UauthResult;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -60,6 +61,15 @@ public class ResponseService {
         result.setCode(0);
         result.setMessage("성공하였습니다");
         result.setList(list);
+        return result;
+    }
+
+    public HanaApiResult falseResult() {
+        HanaApiResult result = new HanaApiResult();
+        result.setSuccess(true);
+        result.setCode(0);
+        result.setMessage("성공하였습니다");
+        result.setList(new ArrayList<>());
         return result;
     }
 }
