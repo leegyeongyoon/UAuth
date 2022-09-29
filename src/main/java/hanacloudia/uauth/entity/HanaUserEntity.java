@@ -26,6 +26,9 @@ public class HanaUserEntity {
     @Column(name = "HFGGRCMCODE")
     private String hfgGrcmCode; // 관계사 코드
 
+    @Column(name = "COMPANYNM")
+    private String companyNm; // 관계사 이름
+
     @Column(name = "HANAPRTLBRNO")
     private String hanaPrtlBrNo; // 부서코드
 

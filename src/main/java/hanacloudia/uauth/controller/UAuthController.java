@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/uauth")
+@RequestMapping("/v1")
 @ApiResponses({
         @ApiResponse(code = 1000, message = "This member not exist"),
         @ApiResponse(code = 1001, message = "Your account does not exist or your email"),

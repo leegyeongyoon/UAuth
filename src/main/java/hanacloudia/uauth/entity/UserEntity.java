@@ -26,23 +26,26 @@ public class UserEntity {
     @Column(name = "HFGGRCMCODE")
     private String hfgGrcmCode; // 관계사 코드
 
+    @Column(name = "COMPANYNM")
+    private String companyNm; // 관계사 이름
+
     @Column(name = "HANAPRTLBRNO")
     private String hanaPrtlBrNo; // 부서코드
 
     @Column(name = "HANAPRTLBRNM")
-    private String hanaprtlBrNm; // 부서명
+    private String hanaPrtlBrNm; // 부서명
 
     @Column(name = "HANAPRTLACTLSBBRNO")
     private String hanaPrtlActlSbBrNo; // 부서코드
 
     @Column(name = "HANAPRTLACTLSBBRNM")
-    private String hanaprtlActlSbBrNm; // 부서명
+    private String hanaPrtlActlSbBrNm; // 부서명
 
     @Column(name = "HANAPRTLSLTNNM")
     private String hanaPrtlSltnNm; // 직급
 
     @Column(name = "HANAPRTLEMPNM")
-    private String hanaprtlEmpNm; // 이름
+    private String hanaPrtlEmpNm; // 이름
 
     @Column(name = "MBPHNO")
     private String mbphNo; //휴대폰번호
@@ -58,7 +61,6 @@ public class UserEntity {
 
     @Column(name = "TOKEN")
     private String token; // 인증 토큰
-
 
 }
 
