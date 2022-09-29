@@ -56,7 +56,7 @@ public class WebSecurityConfig {
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/api/signin").permitAll()
                 .antMatchers("/api/**").permitAll()
-                .antMatchers("/uauth/**").permitAll()
+                .antMatchers("/v1/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
