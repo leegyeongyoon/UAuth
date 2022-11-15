@@ -24,53 +24,53 @@ import java.util.List;
         @ApiResponse(code = 1004, message = "An error occurred during communication"),
         @ApiResponse(code = 1005, message = "you are an existing member"),
         @ApiResponse(code = 9999, message = "An unknown error has occurred"),
-        })
+})
 public class HanaApiController {
 
-        private final HanaApiService hanaApiService;
-        private final ResponseService responseService;
-        @Value(value = "${auth.token}")
-        private String authToken;
+    private final HanaApiService hanaApiService;
+    private final ResponseService responseService;
+    @Value(value = "${auth.token}")
+    private String authToken;
 
-        @GetMapping("/signin")
-        private HanaApiResult signin(@RequestParam("uid") String uid,
-                                      @RequestParam("password") String password) {
-                List<HanaUserEntity> user = hanaApiService.signin(uid, password);
-                return responseService.defaultResult(user);
+    @GetMapping("/signin")
+    private HanaApiResult signin(@RequestParam("uid") String uid,
+                                 @RequestParam("password") String password) {
+        List<HanaUserEntity> user = hanaApiService.signin(uid, password);
+        return responseService.defaultResult(user);
+    }
+
+    @GetMapping("/getempl")
+    private HanaApiResult getEmpl(@RequestParam("X-AUTH_TOKEN") String token,
+                                  @RequestParam("name") String name) {
+        List<HanaUserEntity> user = hanaApiService.getEmpl(name);
+        if (authToken.equals(token)) {
+            return responseService.defaultResult(user);
+        } else {
+            return responseService.falseResult();
         }
 
-        @GetMapping("/getempl")
-        private HanaApiResult getEmpl(@RequestParam("X-AUTH_TOKEN") String token,
-                                      @RequestParam("name") String name) {
-                List<HanaUserEntity> user = hanaApiService.getEmpl(name);
-                if (authToken.equals(token)){
-                        return responseService.defaultResult(user);
-                }else {
-                        return responseService.falseResult();
-                }
+    }
 
+    @GetMapping("/getemplbyempno")
+    private HanaApiResult getemplbyempno(@RequestParam("X-AUTH_TOKEN") String token,
+                                         @RequestParam("empno") String empno) {
+        List<HanaUserEntity> user = hanaApiService.getEmplbyEmpno(empno);
+        if (authToken.equals(token)) {
+            return responseService.defaultResult(user);
+        } else {
+            return responseService.falseResult();
         }
 
-        @GetMapping("/getemplbyempno")
-        private HanaApiResult getemplbyempno(@RequestParam("X-AUTH_TOKEN") String token,
-                                             @RequestParam("empno") String empno) {
-                List<HanaUserEntity> user = hanaApiService.getEmplbyEmpno(empno);
-                if (authToken.equals(token)){
-                        return responseService.defaultResult(user);
-                }else {
-                        return responseService.falseResult();
-                }
+    }
 
+    @GetMapping("/getemplbyid")
+    private HanaApiResult getEmplById(@RequestParam("X-AUTH_TOKEN") String token,
+                                      @RequestParam("email") String email) {
+        List<HanaUserEntity> user = hanaApiService.getEmplById(email);
+        if (authToken.equals(token)) {
+            return responseService.defaultResult(user);
+        } else {
+            return responseService.falseResult();
         }
-
-        @GetMapping("/getemplbyid")
-        private HanaApiResult getEmplById(@RequestParam("X-AUTH_TOKEN") String token,
-                                          @RequestParam("email") String email) {
-                List<HanaUserEntity> user = hanaApiService.getEmplById(email);
-                if (authToken.equals(token)){
-                        return responseService.defaultResult(user);
-                }else {
-                        return responseService.falseResult();
-                }
-        }
+    }
 }
