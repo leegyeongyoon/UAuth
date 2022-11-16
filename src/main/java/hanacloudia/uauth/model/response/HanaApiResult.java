@@ -18,7 +18,7 @@ public class HanaApiResult {
     private int code;
 
     @ApiModelProperty(value=" 응답 메시지 ")
-    private String msg;
+    private String message;
 
     @ApiModelProperty(value=" List ")
     private List<HanaUserEntity> list;

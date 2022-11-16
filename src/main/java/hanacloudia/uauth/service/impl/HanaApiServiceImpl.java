@@ -30,7 +30,7 @@ public class HanaApiServiceImpl implements HanaApiService {
 
     @Override
     public  List<HanaUserEntity> getEmplById(String email){
-        return HanaApiRepository.findByEmalAdr(email);
+        return HanaApiRepository.findByHanaPrtlEmpNo(email);
     }
 
 }

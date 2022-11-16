@@ -11,8 +11,12 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 
@@ -66,6 +70,18 @@ public class UAuthController {
         }
 
     }
+    @GetMapping("/test")
+    private String getServerIp() {
+        HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        String ip = req.getHeader("X-FORWARDED-FOR");
+        if (ip == null)
+            ip = req.getRemoteAddr();
+        System.out.println("ip ::: " + ip);
+        return ip;
+
+    }
+
+
 
     @ApiImplicitParam(name = "X-AUTH-TOKEN", defaultValue = "None", required = true, dataType = "String", paramType = "header")
     @PostMapping("/memberList")

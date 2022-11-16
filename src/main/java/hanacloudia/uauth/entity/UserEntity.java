@@ -41,6 +41,9 @@ public class UserEntity {
     @Column(name = "HANAPRTLACTLSBBRNM")
     private String hanaPrtlActlSbBrNm; // 부서명
 
+    @Column(name = "HANAPRTLPOSNNM")
+    private String hanaPrtlPosnNm; // 직책
+
     @Column(name = "HANAPRTLSLTNNM")
     private String hanaPrtlSltnNm; // 직급
 
