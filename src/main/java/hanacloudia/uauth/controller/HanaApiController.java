@@ -65,7 +65,7 @@ public class HanaApiController {
 
     @GetMapping("/getemplbyid")
     private HanaApiResult getEmplById(@RequestParam("X-AUTH_TOKEN") String token,
-                                      @RequestParam("email") String email) {
+                                      @RequestParam("emalAdr") String email) {
         List<HanaUserEntity> user = hanaApiService.getEmplById(email);
         if (authToken.equals(token)) {
             return responseService.defaultResult(user);
