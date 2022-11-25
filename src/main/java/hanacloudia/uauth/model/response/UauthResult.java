@@ -15,7 +15,7 @@ public class UauthResult {
     private int code;
 
     @ApiModelProperty(value = "응답 메시지 ")
-    private String message;
+    private String msg;
 
     @ApiModelProperty(value = "Data ")
     private UserEntity data;

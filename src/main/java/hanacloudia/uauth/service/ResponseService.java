@@ -44,14 +44,14 @@ public class ResponseService {
         UauthResult result = new UauthResult();
         result.setSuccess(false);
         result.setCode(code);
-        result.setMessage(msg);
+        result.setMsg(msg);
         return result;
     }
 
     private void setSuccessResult(UauthResult result, UserEntity data) {
         result.setSuccess(true);
         result.setCode(Response.SUCCESS.getCode());
-        result.setMessage(Response.SUCCESS.getMsg());
+        result.setMsg(Response.SUCCESS.getMsg());
         result.setData(data);
     }
 
